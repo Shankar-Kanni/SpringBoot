@@ -16,10 +16,11 @@ jobs:
               with:
                 distribution: 'zulu' # See 'Supported distributions' for available options
                 java-version: '21'
-            - name: Test
+            - name: Run spring boot
               run: |
-                java --version
-                # ls -lrtha
+                mvn package
+                cd target
+                ls -lrtha
                 # java -jar *.jar
                 # sleep 10
                 # curl http://localhost:8080/api/hello
