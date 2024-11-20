@@ -21,6 +21,12 @@ jobs:
                 mvn package
                 cd target
                 ls -lrtha
-                # java -jar *.jar
-                # sleep 10
-                # curl http://localhost:8080/api/hello
+                java -jar *.jar
+      
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Test
+              run: |    
+                sleep 20
+                curl http://localhost:8080/api/hello
