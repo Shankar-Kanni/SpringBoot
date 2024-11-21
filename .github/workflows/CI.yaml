@@ -53,5 +53,5 @@ jobs:
             # echo $IP
             
             echo Testing Image URL using wget 
-            curl htpp://localhost:8080/api/hello
+            curl http://localhost:8080/api/hello
               
