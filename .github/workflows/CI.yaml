@@ -19,6 +19,7 @@ jobs:
             - name: Run spring boot
               run: |
                 mvn package
+                ls -lrth target
     docker:
         name: Containerization
         needs: [first-job]
