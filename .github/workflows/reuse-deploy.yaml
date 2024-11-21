@@ -1,0 +1,50 @@
+name: Deployment - Reusable Workflow
+
+on:
+    workflow_call:   
+      inputs:
+        kubectl-version:
+            description: Provide the required Kubectl version
+            default: v1.31.2
+            required: false
+            type: string
+        k8s-manifest-dir:
+            description: Directory containing Kubernetes manifests files
+            default: kubernetes/
+            required: true
+            type: string 
+      secrets:
+        k8s-kubeconfig:
+          required: true
+
+
+
+jobs:
+    reuse-deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Repo
+              uses: actions/checkout@v4
+            
+            - name: Install kubectl CLI
+              uses: azure/setup-kubectl@v3
+              with:
+                version: '${{ inputs.kubectl-version }}'
+
+            - name: Set Kubeconfig file
+              uses: azure/k8s-set-context@v3
+              with:
+                method: kubeconfig
+                kubeconfig: ${{ secrets.k8s-kubeconfig }}
+
+            - name: Fetch Kubernetes Cluster Details
+              run: |
+                kubectl version
+                echo ---------------------------------------------------
+                kubectl config view
+                kubectl config get-contexts
+                kubectl get nodes
+            
+            - name: Deploy to Dev Env
+              run: |
+                kubectl apply -f ${{ inputs.k8s-manifest-dir }}

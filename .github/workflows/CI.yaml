@@ -1,10 +1,11 @@
 name: My First Workflow
 
 on:
-    push: 
-        branches: 
-            - main
-            - master
+  workflow_dispatch: 
+    # push: 
+    #     branches: 
+    #         - main
+    #         - master
 
 jobs:
     first-job:
@@ -72,4 +73,12 @@ jobs:
             docker ps
             echo Testing Image URL using wget 
             wget -q -O - localhost:8080/api/hello | grep Shankar
+
+    dev-deploy:
+      needs: docker
+      uses: ./.github/workflows/reuse-deploy.yaml
+      secrets: 
+        k8s-kubeconfig: ${{ secrets.KUBECONFIG }}
+      with:
+        k8s-manifest-dir: kubernetes/development/
               
