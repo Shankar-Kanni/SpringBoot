@@ -29,7 +29,8 @@ jobs:
         steps:
         - name: Checkout Repo
           uses: actions/checkout@v4
-
+        - name: List
+          run: ls -lrtha
         - name: Dockerhub Login
           uses: docker/login-action@v3
           with:
@@ -51,7 +52,7 @@ jobs:
             
             # export IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' spring-boot-app)
             # echo $IP
-            
+            docker ps
             echo Testing Image URL using wget 
             wget -q -O - localhost:8080/api/hello | grep Shankar
               
