@@ -58,14 +58,14 @@ jobs:
           with:
             context: .
             push: true
-            tags: ${{ secrets.DOCKERHUB_USERNAME }}/spring-boot:latest
+            tags: ${{ secrets.DOCKERHUB_USERNAME }}/spring-boot:${{ github.sha }}
 
         - name: Docker Image Testing
           run: |
             docker images
             docker run --name spring-boot-app -d  \
                 -p 8080:8080 \
-                ${{ secrets.DOCKERHUB_USERNAME }}/spring-boot:latest
+                ${{ secrets.DOCKERHUB_USERNAME }}/spring-boot:${{ github.sha }}
             
             # export IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' spring-boot-app)
             # echo $IP

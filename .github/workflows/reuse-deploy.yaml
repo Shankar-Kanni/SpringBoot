@@ -44,7 +44,20 @@ jobs:
                 kubectl config view
                 kubectl config get-contexts
                 kubectl get nodes
+
+            - name: Replace Token in Manifest files
+              uses: cschleiden/replace-tokens@v1
+              with:
+                tokenPrefix: '_{_'
+                tokenSuffix: '_}_'
+                files: '["${{ inputs.k8s-manifest-dir }}*.yaml"]'
+              env:
+                IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/spring-boot:${{ github.sha }}
             
+            - name: Check files
+              run: |
+                  cat ${{ inputs.k8s-manifest-dir }}*.yaml
+
             - name: Deploy to Dev Env
               run: |
                 kubectl apply -f ${{ inputs.k8s-manifest-dir }}

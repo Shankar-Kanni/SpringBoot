@@ -17,7 +17,7 @@ spec:
         app: spring-boot
     spec:
       containers:
-      - image: shankarkanni80/spring-boot:latest
+      - image: _{_IMAGE_}_
         imagePullPolicy: Always
         name: spring-boot
         ports:
