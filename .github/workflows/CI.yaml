@@ -49,9 +49,9 @@ jobs:
                 -p 8080:8080 \
                 ${{ secrets.DOCKERHUB_USERNAME }}/spring-boot:latest
             
-            export IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' spring-boot-app)
-            echo $IP
+            # export IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' spring-boot-app)
+            # echo $IP
             
             echo Testing Image URL using wget 
-            wget -q -O - 127.0.0.1:8080/api/hello | grep Shankar
+            curl htpp://localhost:8080/api/hello
               
