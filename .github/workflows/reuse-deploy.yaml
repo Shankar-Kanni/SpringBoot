@@ -52,7 +52,7 @@ jobs:
                 tokenSuffix: '_}_'
                 files: '["${{ inputs.k8s-manifest-dir }}*.yaml"]'
               env:
-                IMAGE: shankarkanni80/spring-boot:${{ github.sha }}
+                IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/spring-boot:${{ github.sha }}
             
             - name: Check files
               run: |
