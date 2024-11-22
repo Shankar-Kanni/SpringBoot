@@ -71,7 +71,7 @@ jobs:
             # echo $IP
             docker ps
             echo Testing Image URL using wget 
-            wget -q -O - localhost:8080/api/hello | grep Shankar
+            wget -q -O - localhost:8080/api/hello | grep Hello
 
     dev-deploy:
       needs: docker
