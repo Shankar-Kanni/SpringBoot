@@ -1,4 +1,4 @@
-name: My First Workflow
+name: Spring Boot CI/CD using microk8s on GCP VM
 
 on:
     push: 
