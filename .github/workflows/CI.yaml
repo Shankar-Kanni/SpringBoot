@@ -7,7 +7,7 @@ on:
             - master
 
 jobs:
-    first-job:
+    build-spring-boot:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout Repo
@@ -27,7 +27,7 @@ jobs:
                 path: target/*.jar
     docker:
         name: Containerization
-        needs: [first-job]
+        needs: [build-spring-boot]
         permissions: 
           packages: write
         runs-on: ubuntu-latest
