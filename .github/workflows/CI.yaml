@@ -5,7 +5,8 @@ on:
         branches: 
             - main
             - master
-
+env:
+  TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
     build-spring-boot:
         runs-on: ubuntu-latest
@@ -35,7 +36,7 @@ jobs:
         - name: Checkout Repo
           uses: actions/checkout@v4
           with:
-            token: ${{ secrets.GITTOKEN }}
+            token: ${{ env.TOKEN }}
         - name: List
           run: ls -lrtha
 
