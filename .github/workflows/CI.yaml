@@ -6,7 +6,7 @@ on:
             - main
             - master
 env:
-  TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  TOKEN: ${{ secrets.APIKEY }}
 jobs:
     build-spring-boot:
         runs-on: ubuntu-latest
