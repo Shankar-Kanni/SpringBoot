@@ -18,7 +18,7 @@ jobs:
                 java-version: '21'
             - name: Run spring boot
               run: |
-                mvn package
+                mvn -B package --file pom.xml
                 ls -lrth target
             - name: Upload the artifact
               uses: actions/upload-artifact@v4
