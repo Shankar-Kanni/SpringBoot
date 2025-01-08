@@ -4,9 +4,9 @@ on:
     push: 
       paths-ignore: 
         - 'README.md'
-        branches: 
-            - main
-            - master
+      branches: 
+        - main
+        - master
     workflow_dispatch:         
 
 env:
