@@ -1,4 +1,4 @@
-#Steps to change the public IP for micro8ks
+#Steps to change the public IP for micro8ks which is running on Google Compute Engine
 
 ```t
 shankarkanni80@gcptutorials-vm:/var/snap/microk8s/current/certs$ cat csr.conf.template | grep IP.99
